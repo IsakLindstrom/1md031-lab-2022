@@ -17,7 +17,6 @@
             {{" E-mail: "+order.email}}<br>
             {{" Vald betalningsmetod: "+order.payment}}<br>
             {{" Kön: "+order.gender}}
-
           </div>
 
 
