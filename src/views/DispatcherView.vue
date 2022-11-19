@@ -1,11 +1,34 @@
 <template>
     <div id="orders">
       <div id="orderList">
-        <div v-for="(order, key) in orders" v-bind:key="'order'+key">
-          #{{ key }}: {{ order.orderItems.join(", ") }}
+        <div v-for="order in orders" v-bind:key="order">
+          {{"Order ID:"+order.orderId}}
+
+          <div  v-for="item in order.orderItems" v-bind:key="item">
+            <div v-if="item.amount>0 ">
+              {{item.amount +" "+ item.name}}
+            </div>
+
+          </div>
+
+          <div>
+
+            {{"Namn: " + order.name}}<br>
+            {{" E-mail: "+order.email}}<br>
+            {{" Vald betalningsmetod: "+order.payment}}<br>
+            {{" Kön: "+order.gender}}
+          </div>
+
+
+
+        <!-- <h1 id="items">#{{ key }}:  {{ order.orderItems.join(" , ") }}  </h1>
+          <h2 id="info">{{order.details.name}}  <br> {{order.details.email}} <br>  {{order.details.payment}}  <br> {{order.details.gender}}</h2>
+          -->
         </div>
         <button v-on:click="clearQueue">Clear Queue</button>
       </div>
+
+
       <div id="dots" v-bind:style="{ background: 'url(' + require('../../public/img/polacks.jpg')+ ')' }">
           <div v-for="(order, key) in orders" v-bind:style="{ left: order.details.x + 'px', top: order.details.y + 'px'}" v-bind:key="'dots' + key">
             {{ key }}
@@ -16,7 +39,7 @@
   <script>
   import io from 'socket.io-client'
   const socket = io();
-  
+
   export default {
     name: 'DispatcherView',
     data: function () {
@@ -31,6 +54,7 @@
     methods: {
       clearQueue: function () {
         socket.emit('clearQueue');
+
       }
     }
   }
@@ -58,11 +82,12 @@
   #dots div {
     position: absolute;
     background: black;
-    color: white;
+    color: red;
     border-radius: 10px;
     width:20px;
     height:20px;
     text-align: center;
   }
+
   </style>
   

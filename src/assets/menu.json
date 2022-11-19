@@ -1,0 +1,34 @@
+
+[
+  {
+    "name": "Edward bloms mellanmål",
+    "kCal": "4800 Kcal",
+    "risk": "Riskfylld",
+    "god": "God",
+    "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-OBRsKLfDAxFDwZhELU-QClZmkHfKbc1i-g&usqp=CAU"
+  },
+
+  {
+    "name": "Serbisk special (Pljeskavica)",
+    "kCal":  " 500 Kcal",
+    "risk": "Riskfri",
+    "god": "God",
+    "url": "https://tastykitchen.com/recipes/wp-content/uploads/sites/2/2016/09/pljeskavica-serbian-burger-recipe-5-410x273.jpg"
+  },
+
+  {
+    "name": "Straffa din toalett",
+    "kCal": "7289 Kcal" ,
+    "risk": "Riskfylld",
+    "god": "Motbjudande",
+    "url": "https://i.guim.co.uk/img/media/5eb07f5a85a200b7c3c0f4b13d02bd306e9153b4/0_1292_3024_1814/master/3024.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=39fa8fa2c81b4af67c4ce7a061ff1f63"
+  },
+
+  {
+    "name": "Lökbaserad",
+    "kCal": "900 Kcal",
+    "risk": "Riskfri",
+    "god": "God",
+    "url": "https://res.cloudinary.com/hksqkdlah/image/upload/35218_sfs-grilled-bacon-burgers-with-caramelized-onions-15.jpg"
+  }
+]
