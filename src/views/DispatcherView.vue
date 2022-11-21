@@ -20,11 +20,6 @@
 
           </div>
 
-
-
-        <!-- <h1 id="items">#{{ key }}:  {{ order.orderItems.join(" , ") }}  </h1>
-          <h2 id="info">{{order.details.name}}  <br> {{order.details.email}} <br>  {{order.details.payment}}  <br> {{order.details.gender}}</h2>
-          -->
         </div>
         <button v-on:click="clearQueue">Clear Queue</button>
       </div>
