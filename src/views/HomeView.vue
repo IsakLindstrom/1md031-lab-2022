@@ -81,7 +81,7 @@
 
 
 
-      <button class="submit-button" v-on:click="getCustomerInfo" type="submit">
+      <button class="submit-button" v-on:click="getCustomerInfo" :disabled="checkInput" type="submit" >
 
 
         <img id="orderpicture" src="https://www.butiksnytt.se/wp-content/uploads/2019/11/Edward-Blom-Circle-K.jpg">
@@ -90,14 +90,39 @@
       </button>
 
     </section>
+
   <div id="map">
+
     <div class="map"  id="dots" v-on:click="setLocation">
-      <h1 id="clickhere" >Välj beställningsadress</h1>
+      <div class="wavyText" >
+
+        <span style="--i:1;">B</span>
+        <span style="--i:2;">E</span>
+        <span style="--i:3;">S</span>
+        <span style="--i:4;">T</span>
+        <span style="--i:5;">Ä</span>
+        <span style="--i:6;">L</span>
+        <span style="--i:7;">L</span>
+        <span style="--i:8;">N</span>
+        <span style="--i:9;">I</span>
+        <span style="--i:10;">N</span>
+        <span style="--i:11;">G</span>
+        <span style="--i:12;">S</span>
+        <span style="--i:13;">A</span>
+        <span style="--i:14;">D</span>
+        <span style="--i:15;">R</span>
+        <span style="--i:16;">E</span>
+        <span style="--i:17;">S</span>
+        <span style="--i:18;">S</span>
+
+      </div>
       <div  v-bind:style="{ left: this.customerInfo.location.x + 'px',
                       top: this.customerInfo.location.y + 'px' }">
-        T
+
+        &hearts;
       </div>
     </div>
+
 
   </div>
 
@@ -118,6 +143,13 @@ import menu from '../assets/menu.json'
 const socket = io();
 
 const theMenu = menu;
+
+
+
+
+
+
+
 
 //constructor object
 //function MenuItem(name, url,kcal,god, risk){
@@ -145,11 +177,13 @@ const menyn = [theMenu[0], theMenu[1],theMenu[2],theMenu[3]];
 
 
 
+
 export default {
   name: 'HomeView',
   components: {
     Burger
   },
+
   data: function () {
     return {
       burgers: menyn,
@@ -163,12 +197,14 @@ export default {
                     y: 0
         }
 
-      }
-
+      },
+      fn:"",
+      em:"",
 
 
     }
   },
+
   methods: {
 
 
@@ -203,10 +239,18 @@ export default {
 
       for(let i=0; i<this.customerInfo.selectedBurger.length; i++){
         console.log(this.customerInfo.selectedBurger[i])
+          console.log(event.amount)
         if(this.customerInfo.selectedBurger[i].name===event.name){
           this.customerInfo.selectedBurger[i].amount=event.amount;
+          if(event.amount===0){
+            this.customerInfo.selectedBurger.splice(i,1)
+            return;
+          }
           return;
         }
+
+
+
       }
       this.customerInfo.selectedBurger.push(event);
 
@@ -236,8 +280,16 @@ export default {
 
     }
 
-  }
+  },
+  computed: {
+    checkInput: function() {
+      return (this.em && this.fn != "" && this.customerInfo.selectedBurger.length>0) ? false : true;
 
+
+    },
+
+
+  },
 }
 
 
@@ -287,6 +339,10 @@ border-width: 5px;
   }
   .submit-button:active{
     opacity: 0.7;
+  }
+  button.submit-button:disabled{
+    opacity:0.3;
+    pointer-events: none !important;
   }
 
 
@@ -347,7 +403,7 @@ border-width: 5px;
     background-image: url("../../public/img/polacks.jpg");
     width:1920px;
     height:1078px;
-    overflow:scroll;
+
 
   }
 
@@ -364,17 +420,48 @@ border-width: 5px;
 
 }
 
-#clickhere{
-  margin-left: -600px;
-}
 
-  #dots div {
-    position: absolute;
-    background: black;
-    color: white;
-    border-radius: 10px;
-    width:20px;
-    height:20px;
-    text-align: center;
+
+
+  .wavyText {
+
+    display:flex;
+    margin-left: 27vh;
+
+    font-family: Consolas;
+
+
+    /*noinspection CssInvalidPropertyValue*/
+    -webkit-box-reflect: below -12px linear-gradient(
+        transparent,rgba(0,0,0,0.2));
+
+
+  }
+  .wavyText span {
+
+    margin-top: 10vh;
+    font-size: 2em;
+    animation: animate 3s ease-in-out infinite;
+    animation-delay: calc(0.1s * var(--i));
+    color: black;
+    font-weight: bolder;
+    position:sticky;
+
+
+  }
+  @keyframes animate
+  {
+    0%
+    {
+      transform:translateY(0px);
+    }
+    20%
+    {
+      transform:translateY(-20px);
+    }
+    40%,100%
+    {
+      transform:translateY(0px);
+    }
   }
 </style>

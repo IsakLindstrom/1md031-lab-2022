@@ -5,7 +5,7 @@
           {{"Order ID:"+order.orderId}}
 
           <div  v-for="item in order.orderItems" v-bind:key="item">
-            <div v-if="item.amount>0 ">
+            <div>
               {{item.amount +" "+ item.name}}
             </div>
 
@@ -82,7 +82,7 @@
   
   #dots div {
     position: absolute;
-    background: black;
+
     color: red;
     border-radius: 10px;
     width:20px;
